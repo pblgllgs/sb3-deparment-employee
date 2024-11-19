@@ -1,14 +1,18 @@
 package com.pblgllgs.restfulapi.service;
 
-import com.pblgllgs.restfulapi.entity.User;
+import com.pblgllgs.restfulapi.dto.UserDTO;
 
 import java.util.List;
 
 public interface UserService {
 
-    User createUser(User user);
-    User getUserById(Long userId);
-    List<User> getAllUsers();
-    User updateUser(Long userId, User user);
+    UserDTO createUser(UserDTO userDTO);
+
+    UserDTO getUserById(Long userId);
+
+    List<UserDTO> getAllUsers();
+
+    UserDTO updateUser(Long userId, UserDTO user);
+
     void deleteUser(Long userId);
 }
