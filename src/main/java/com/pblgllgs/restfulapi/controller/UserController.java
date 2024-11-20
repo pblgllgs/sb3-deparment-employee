@@ -9,6 +9,7 @@ package com.pblgllgs.restfulapi.controller;
 import com.pblgllgs.restfulapi.dto.UserDTO;
 import com.pblgllgs.restfulapi.entity.User;
 import com.pblgllgs.restfulapi.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
         UserDTO createdUser = userService.createUser(userDTO);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
@@ -41,7 +42,7 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<UserDTO> updateUserById(
             @PathVariable("userId") Long userId,
-            @RequestBody UserDTO userDTO
+            @Valid @RequestBody UserDTO userDTO
     ){
         return new ResponseEntity<>(userService.updateUser(userId,userDTO),HttpStatus.OK);
     }
